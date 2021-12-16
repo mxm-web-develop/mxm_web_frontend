@@ -15,8 +15,9 @@
     "paths": {
 	  // 根据别名配置相关路径
       "@/*": ["./src/*"],
-      "@components/": ["./components/*"],
-      "@views/": ["./views/*"],
+      "@components/": ["./src/components/*"],
+      "@views/": ["./src/views/*"],
+      "@assets/": ["./src/aseets/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

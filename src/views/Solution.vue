@@ -1,11 +1,12 @@
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, onMounted, reactive, ref, watch } from 'vue';
 // import axios from 'axios'
 import { useAxios } from '@vueuse/integrations/useAxios'
 import Container from '@/layouts/Container/index.vue';
 import instance from '@/axiosInstance';
 import SolutionItem from '@/components/solutionItem.vue';
+
 const dataType = {
         problems:"",
         introduction:"",
@@ -27,12 +28,13 @@ const dataType = {
 
 export type DATATYPE = typeof dataType
 const {isLoading,isFinished,data} = useAxios<Record<string,DATATYPE>>('/solutions',instance)
-const getArticleInfo = async () => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log(isFinished.value);
+
+const setPage = async () => {
+   return await new Promise(resolve => setTimeout(resolve,1500))
 }
+
 const activedSolution = ref<string | undefined>(undefined)
-await getArticleInfo()
+
 const setactive=(item:string)=>{
  activedSolution.value = item
 }
@@ -44,6 +46,8 @@ const isItemActived = computed(()=>{
        return name === activedSolution.value? true:false
     }
 })
+
+await setPage()
 
 </script>
 
@@ -64,10 +68,12 @@ const isItemActived = computed(()=>{
                 </div>
                 <div class="hidden md:flex flex-col justify-center items-center md:w-6/12 px-5">
                     <div class="default px-5" v-if="!activedSolution">
-                        <img src="/img/Programmer.png" class="w-10/12">
+                        <img  src="@assets/Programmer.png" class="w-10/12">
                         <div class='text-xs w-6/12 mx-auto opacity-50'>永远没有最好的，只有最适合的 <br />  <span class="text-right float-right"> -mxm</span> </div>
                     </div>
-                    <div class="showActived-solution" v-else></div>
+                    <div class="showActived-solution" v-else>
+                        <div></div>
+                    </div>
                 </div>
             </div>
         </Container>

@@ -12,8 +12,10 @@
                 <div class='px-6 w-10/12 md:5/12'>lalal this is subtitle lalal this is subtitle lalal this is subtitle lalal this is subtitle lalal this is subtitle</div>
             </div>
 
-            <div class='transform rotate-180 absolute bottom-16'>
-                <Mxm_icon icon-name="icon-arrow" :size='42'></Mxm_icon>
+            <div class=' transform rotate-180 absolute bottom-16'>
+                <div class="animate-bounce">
+                    <Mxm_icon icon-name="icon-arrow" :size='42'></Mxm_icon>
+                </div>
             </div>
             
         </div>

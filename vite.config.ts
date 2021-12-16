@@ -9,6 +9,7 @@ export default defineConfig({
     alias:{
       "@":resolve(__dirname,"src"),
       "@views":resolve(__dirname,"src/views"),
+      "@assets":resolve(__dirname,"src/assets"),
       "@components":resolve(__dirname,"src/components")
     }
   },

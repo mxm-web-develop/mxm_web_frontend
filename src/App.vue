@@ -10,21 +10,16 @@ import { usescrollController } from './layouts/Scrollview/scrollController';
 // import Solution from './views/Solution.vue';
 const Solution = defineAsyncComponent(()=>import(`./views/Solution.vue`))
 const NioUi = defineAsyncComponent(()=>import(`./views/NioUi.vue`))
+const Library = defineAsyncComponent(()=>import(`./views/Library.vue`))
+
 const {Scroller} = usescrollController()
 
 const show = ref(true)
 const clicked =()=>{
-  console.log(111)
   show.value = !show.value
 }
 
-
-  // Scroller.value.trigger('scroll',()=>{
-  //   console.log('我到ui2了');
-    
-  // })
 onMounted(()=>{
-
     //  const targetIsVisible = useElementVisibility(Scroller.value.content.children[2)
   // Scroller.value.scrollToElement('#nio-ui2',1300,0,0)
 
@@ -40,8 +35,8 @@ onMounted(()=>{
   <div class="app" ref='app'>
 
     <Scrollview >
-          <Page id="solution">
-            <Suspense  v-if='show'>
+          <Page id="solution" v-if="show">
+            <Suspense>
               <template #default>
                 <Solution></Solution>
               </template>
@@ -52,6 +47,9 @@ onMounted(()=>{
           </Page>
           <Page id="nio-ui">
               <NioUi></NioUi>
+          </Page>
+          <Page id="lib">
+            <Library></Library>
           </Page>
     </Scrollview>
    </div>
