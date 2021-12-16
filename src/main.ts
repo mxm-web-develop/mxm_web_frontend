@@ -1,4 +1,19 @@
-import { createApp } from 'vue'
+import { createApp,h } from 'vue'
 import App from './App.vue'
+
+import { scrollController } from './layouts/Scrollview/scrollController'
 import './style.css'
-createApp(App).mount('#app')
+
+
+
+const app = createApp(
+    {
+        setup(){
+            scrollController()
+        },
+        render:()=>h(App) 
+    }
+)
+
+
+app.mount('#app')
