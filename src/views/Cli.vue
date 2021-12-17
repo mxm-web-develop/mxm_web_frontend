@@ -1,7 +1,7 @@
 <template>
-<div>
-    MxM_Cli
-</div>
+    <div>
+        MxM_Cli
+    </div>
 </template>
 
 <script lang="ts" setup>

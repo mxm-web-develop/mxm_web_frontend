@@ -9,8 +9,8 @@ defineProps<{
     isActived:boolean
 }>()
 const emit = defineEmits(['itemOnClick'])
-const showSolutionDetails=(item:string)=>{
-    emit('itemOnClick',item)
+const showSolutionDetails=(item:string,data:DATATYPE)=>{
+    emit('itemOnClick',[item,data])
 }
 const displayReadableTime = computed(()=>{
     return function(timestame:number){
@@ -23,7 +23,7 @@ const displayReadableTime = computed(()=>{
 <template>
     <div class="item pl-2 py-3 border-b border-slate-100 cursor-pointer hover:bg-slate-50 rounded  flex" 
         :class="isActived?'bg-slate-50':''"
-        @click="showSolutionDetails(name)"
+        @click="showSolutionDetails(name,solutionData)"
     >
             <div class='app-icon  rounded-full  bg-slate-100'>
                 <div class='h-12 w-12 md:h-16 md:w-16 flex items-center justify-center'>

@@ -1,12 +1,15 @@
 
 <script lang="ts" setup>
-import { computed, onMounted, reactive, ref, watch } from 'vue';
+import { computed, onMounted, reactive, ref, watch,defineAsyncComponent,toRefs, Ref, toRaw, ToRefs } from 'vue';
 // import axios from 'axios'
 import { useAxios } from '@vueuse/integrations/useAxios'
 import Container from '@/layouts/Container/index.vue';
 import instance from '@/axiosInstance';
+import { useWindowSize } from '@vueuse/core'
 import SolutionItem from '@/components/solutionItem.vue';
-
+import SolutionDetails from '@/components/SolutionDetails.vue';
+import MxmModal from '@/components/mxmModal/index.vue';
+const ImgLoader = defineAsyncComponent(()=>import(`@components/AsyncImg.vue`))
 const dataType = {
         problems:"",
         introduction:"",
@@ -27,32 +30,56 @@ const dataType = {
 }
 
 export type DATATYPE = typeof dataType
-const {isLoading,isFinished,data} = useAxios<Record<string,DATATYPE>>('/solutions',instance)
+const showModel = ref(false)
+const {width} =useWindowSize()
+const {isFinished,data} = useAxios<Record<string,DATATYPE>>('/solutions',instance)
 
 const setPage = async () => {
-   return await new Promise(resolve => setTimeout(resolve,1500))
+    return await new Promise<Record<string,any>> (resolve => {
+        setTimeout(()=>resolve(data),1500)
+    })
 }
-
-const activedSolution = ref<string | undefined>(undefined)
-
-const setactive=(item:string)=>{
- activedSolution.value = item
-}
-const showSolutionDetails=(name:string)=>{
-    console.log(name);
-}
-const isItemActived = computed(()=>{
-    return function(name:string) {
-       return name === activedSolution.value? true:false
+const moblieView = computed(()=>{
+    if(width.value>765){
+        return false
+    }else{
+        return true
     }
 })
+console.log(width.value);
 
-await setPage()
+
+const activedSolution = ref<[string,DATATYPE] | undefined>(undefined)
+
+const setactive=(item:[string,DATATYPE])=>{
+    activedSolution.value = item
+    showModel.value = true
+    console.log(activedSolution.value)
+}
+
+const isItemActived = computed(()=>{
+    return function(name:string) {
+        if(activedSolution.value)
+            return name === activedSolution.value[0]? true:false
+        else
+            return false
+    }
+})
+const pageData = await setPage() as Record<string, DATATYPE>
 
 </script>
 
 <template>
         <Container>
+            <MxmModal v-if='moblieView'
+            v-model="showModel" mode="frame" width='100vw' height="100vh"  telTo='body' themeColor='white' position="b">
+                <template #frame>
+                    <!-- <div class=' absolute right-3 cursor-pointer' @click="()=>showModel = false">close</div> -->
+                    <div v-if='activedSolution'>
+                        <SolutionDetails :data='activedSolution'></SolutionDetails>
+                    </div>
+                </template>
+            </MxmModal>
             <div class='flex'>
                 <div class='flex flex-col w-full md:w-6/12'>
                     <div class='flex flex-row'>
@@ -63,16 +90,24 @@ await setPage()
                         </div>
                     </div>
                     <div class="list py-5">
-                        <SolutionItem v-for="(value,key) of data" :key="key" :name="key" :solutionData='value' @itemOnClick='setactive' :isActived="isItemActived(key)"></SolutionItem>
+                        <SolutionItem v-for="(value,key) of pageData" :key="key" :name="key" :solutionData='value' @itemOnClick='setactive' :isActived="isItemActived(key)"></SolutionItem>
                     </div>
                 </div>
                 <div class="hidden md:flex flex-col justify-center items-center md:w-6/12 px-5">
                     <div class="default px-5" v-if="!activedSolution">
-                        <img  src="@assets/Programmer.png" class="w-10/12">
+                        <!-- <img  src="@assets/Programmer.png" class="w-10/12"> -->
+                        <Suspense>
+                            <template #default>
+                                <ImgLoader urlSrc='/img/Programmer.png' width='320px'></ImgLoader>
+                            </template>
+                            <template #fallback>
+                                loading
+                            </template>
+                        </Suspense>
                         <div class='text-xs w-6/12 mx-auto opacity-50'>永远没有最好的，只有最适合的 <br />  <span class="text-right float-right"> -mxm</span> </div>
                     </div>
-                    <div class="showActived-solution" v-else>
-                        <div></div>
+                    <div class="showActived-solution h-full self-start" v-else>
+                        <SolutionDetails :data='activedSolution'></SolutionDetails>
                     </div>
                 </div>
             </div>
