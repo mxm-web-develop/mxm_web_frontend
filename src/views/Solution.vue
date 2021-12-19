@@ -51,7 +51,7 @@ console.log(width.value);
 
 const activedSolution = ref<[string,DATATYPE] | undefined>(undefined)
 
-const setactive=(item:[string,DATATYPE])=>{
+const setactive=(item:[string,DATATYPE]| undefined)=>{
     activedSolution.value = item
     showModel.value = true
     console.log(activedSolution.value)
@@ -72,6 +72,7 @@ const pageData = await setPage() as Record<string, DATATYPE>
 <template>
         <Container>
             <MxmModal v-if='moblieView'
+            :onBeforeClose='()=>setactive(undefined)'
             v-model="showModel" mode="frame" width='100vw' height="100vh"  telTo='body' themeColor='white' position="b">
                 <template #frame>
                     <!-- <div class=' absolute right-3 cursor-pointer' @click="()=>showModel = false">close</div> -->
@@ -85,8 +86,8 @@ const pageData = await setPage() as Record<string, DATATYPE>
                     <div class='flex flex-row'>
                         <div class='avatar'></div>
                         <div>
-                            <div class='title text-lg md:text-3xl py-3'> <span class=' text-2xl md:text-5xl font-mono font-bold'>架</span> <span class='opacity-50'>构解决方案</span> </div>
-                            <div class='sub-title md:w-10/12 text-sm text-slate-400'>mxm可以使用各种稳定工具，提供应用端各种解决方案，为了更好的用户体验和终端实现</div>
+                          <div class='title text-base md:text-xl py-3'> <span class=' text-xl md:text-3xl font-mono font-bold text-theme-red'>架</span> <span class='opacity-50'>构解决方案</span> </div>
+                            <div class='sub-title md:w-10/12 text-sm text-slate-400'>MxM可以使用各种稳定工具，提供应用端各种解决方案，为了更好的用户体验和终端实现</div>
                         </div>
                     </div>
                     <div class="list py-5">

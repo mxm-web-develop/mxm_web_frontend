@@ -20,7 +20,7 @@ const showTabs = computed(()=>{
             case TABS.DESCRIPTION:
                 return '简介'
             case TABS.LINKS:
-                return '链接'
+                return '案例'
         }
     }
 })
@@ -56,8 +56,6 @@ const tabActive = ref(TABS.DESCRIPTION)
             {{showTabs(i)}}
           </div>
       </div>
-      <div class='tab-render'>
-          
-      </div>
+      <div class='tab-render'></div>
   </div>
 </template>

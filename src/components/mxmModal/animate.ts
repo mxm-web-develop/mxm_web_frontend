@@ -1,4 +1,4 @@
-import gsap,{Power1,Back,Circ} from "gsap";
+import gsap,{Power1,Back,Circ,Power4} from "gsap";
 
  const animate ={
     "dialog":(e:any)=>gsap.from(e,{duration:0.3, y:window.innerHeight/2-150,opacity:0, scale:0.3, delay:0.1,fontSize:0,ease:Power1.easeIn}),
@@ -12,7 +12,7 @@ import gsap,{Power1,Back,Circ} from "gsap";
     "frame-t":(e:any)=>gsap.from(e,{duration:0.3,  top:-400, ease:Circ.easeOut}),
     "frame-reverse-t":(e:any)=>gsap.to(e,{duration:0.3,  top:-400, ease:Circ.easeIn}),
     "frame-b":(e:any)=>gsap.from(e,{duration:0.6,  bottom:-400, ease:Circ.easeOut}),
-    "frame-reverse-b":(e:any)=>gsap.to(e,{duration:0.6,  bottom:-400, ease:Circ.easeIn}),
+    "frame-reverse-b":(e:any)=>gsap.to(e,{duration:0.4,  bottom:-400, ease:Circ.easeIn}),
     "image":(e:any)=>{},
     "image-reverse":(e:any)=>{}
 } 

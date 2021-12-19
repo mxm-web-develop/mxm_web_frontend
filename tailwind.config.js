@@ -4,13 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'theme-red':'#F13842'
+        'theme-red':'#F13842',
+        'theme-yellow':'#F9E001'
       },
       spacing:{
-        pcBody:'1200px'
+        pcBody:'1200px',
+        quote:'295px'
       },
       minHeight: {
-        pageMin:'325px'
+        pageMin:'325px',
+        homeUnit:'280px'
       }, 
     },
 

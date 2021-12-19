@@ -1,5 +1,5 @@
 <template>
-    <div class='text-xs px-3 py-1 text-white mx-2 rounded-t-lg' :class="getStateColor(state)">
+    <div class='text-xs px-3 py-1 text-white mx-2 h-6 rounded-t-lg' :class="getStateColor(state)">
         {{getState(state)}}
     </div>
 </template>

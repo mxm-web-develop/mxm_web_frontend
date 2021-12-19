@@ -5,12 +5,12 @@ withDefaults(
 defineProps<{
     size?:number
     iconName:string
-    iconColor?:string
+    color?:string
     iconfont?:boolean
 }>(),{
     iconfont:false,
     size:18,
-    iconColor:'#ffffff'
+    color:'#ffffff'
 })
 const getIconPath = computed(()=>{
     return `#${props.iconName}.svg`
@@ -18,7 +18,7 @@ const getIconPath = computed(()=>{
 </script>
 
 <template>
-  <svg :fill="iconColor" class="svg-icon" :height="size" :width="size" > 
+  <svg :fill="color" class="svg-icon" :height="size" :width="size" > 
     <use :xlink:href="'#'+iconName" />
   </svg>
 </template>
