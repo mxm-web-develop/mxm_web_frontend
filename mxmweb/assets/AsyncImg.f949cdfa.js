@@ -1,0 +1,1 @@
+import{d as t,o as c,c as r,f as s,b as o}from"./vendor.6d26f4e5.js";const a=["src"],i=t({props:{urlSrc:{default:""},width:{default:"125px"}},setup(e){return(l,n)=>(c(),r("div",null,[s("img",{src:e.urlSrc,class:"object-cover",style:o({width:e.width})},null,12,a)]))}});export{i as default};

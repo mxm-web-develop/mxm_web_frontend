@@ -36,7 +36,7 @@ const {isFinished,data} = useAxios<Record<string,DATATYPE>>('/solutions',instanc
 
 const setPage = async () => {
     return await new Promise<Record<string,any>> (resolve => {
-        setTimeout(()=>resolve(data),1500)
+        setTimeout(()=>resolve(data),600)
     })
 }
 const moblieView = computed(()=>{
