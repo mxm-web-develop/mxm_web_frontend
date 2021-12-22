@@ -9,7 +9,9 @@ module.exports = {
       },
       spacing:{
         pcBody:'1200px',
-        quote:'295px'
+        quote:'295px',
+        lbbox:'650px',
+        half:'50%'
       },
       minHeight: {
         pageMin:'325px',

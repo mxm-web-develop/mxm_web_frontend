@@ -709,6 +709,11 @@ detective@^5.2.0:
     defined "^1.0.0"
     minimist "^1.1.1"
 
+device-detector-js@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/device-detector-js/-/device-detector-js-3.0.0.tgz#7a12f94ec84d7291866ee5fe74e8dc2e495e2b35"
+  integrity sha512-bmdq9JZano9y2uor1VT4/g0rfN29hVnU1q0g8sgxtMGF9/UBaEBEeN/o0K4sEy8LIga9yIdmyXSaa04ncUBsoQ==
+
 didyoumean@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz"

@@ -3,14 +3,12 @@ import Scrollview from './layouts/Scrollview/index.vue';
 import {onMounted, ref,defineAsyncComponent,getCurrentInstance,defineComponent, Component} from 'vue'
 import Page from './layouts/Page/index.vue';
 import LoadingPage from './components/Loading.vue'
-import ErrorPage from './views/Error.vue'
-import { useElementVisibility } from '@vueuse/core'
-import Home from './views/Home.vue';
+
 import { usescrollController } from './layouts/Scrollview/scrollController';
-import Cli from './views/Cli.vue';
+import Serve from './views/Serve.vue';
 import Knowledge from './views/Knowledge.vue';
-import Toolbar from './components/toolbar.vue';
-// import Solution from './views/Solution.vue';
+import Footer from './layouts/Footer.vue';
+
 const Solution = defineAsyncComponent(()=>import(`./views/Solution.vue`))
 const NioUi = defineAsyncComponent(()=>import(`./views/NioUi.vue`))
 const Library = defineAsyncComponent(()=>import(`./views/Library.vue`))
@@ -22,7 +20,7 @@ const show = ref(false)
 onMounted(()=>{
   setTimeout(()=>{
     Scroller.value.enable()
-  },800)
+  },50)
   Scroller.value.on('enable', ()=> {
     console.log('可以滑动了');
     
@@ -53,11 +51,19 @@ onMounted(()=>{
             <Knowledge></Knowledge>
           </Page>
           <Page id="lib" v-if="show">
-            <Library ></Library>
+            <Suspense>
+              <template #default>
+                <Library></Library>
+              </template>
+              <template #fallback>
+                <LoadingPage text='MxM工具包'></LoadingPage>
+              </template>
+            </Suspense>
           </Page>
           <Page id="cli" v-if="show">
-            <Cli></Cli>
+            <Serve></Serve>
           </Page>
+          <Footer></Footer>
     </Scrollview>
    </div>
 </template>

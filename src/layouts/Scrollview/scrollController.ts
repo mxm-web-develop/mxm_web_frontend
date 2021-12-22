@@ -1,4 +1,4 @@
-import BScroll, { BScrollInstance } from "better-scroll";
+import BScroll from "better-scroll";
 
 import { inject, onBeforeUnmount, onMounted, provide, Ref, ref } from "@vue/runtime-core";
 import { BScrollConstructor } from "@better-scroll/core/dist/types/BScroll";
@@ -11,6 +11,9 @@ const default_config = {
       speed: 10,
       invert: false,
       easeTime: 500,
+    },
+    nestedScroll:{
+        groupId:'app-scroller'
     },
     // slide:true,
     observeDOM:true,

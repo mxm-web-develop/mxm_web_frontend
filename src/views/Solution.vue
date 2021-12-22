@@ -46,8 +46,6 @@ const moblieView = computed(()=>{
         return true
     }
 })
-console.log(width.value);
-
 
 const activedSolution = ref<[string,DATATYPE] | undefined>(undefined)
 
