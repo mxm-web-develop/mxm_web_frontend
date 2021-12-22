@@ -5,7 +5,7 @@ import {DATATYPE} from '@/views/Solution.vue'
 import dayjs from 'dayjs'
 defineProps<{
     name:string
-    solutionData:DATATYPE
+    solutionData:any
     isActived:boolean
 }>()
 const emit = defineEmits(['itemOnClick'])

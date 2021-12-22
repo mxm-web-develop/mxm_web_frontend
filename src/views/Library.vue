@@ -1,26 +1,34 @@
 <script lang="ts" setup>
 import BScroll from "better-scroll";
 import Container from "@/layouts/Container/index.vue";
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, watch} from 'vue'
 import { BScrollConstructor } from "@better-scroll/core/dist/types/BScroll";
 import moke from './moke'
+import instance from '@/axiosInstance';
+import { useAxios } from '@vueuse/integrations/useAxios'
+import {IResponse} from '../axiosInstance'
 import GslidePage from "@/components/GslidePage.vue";
 const libraryScroller = ref<HTMLElement | undefined>(undefined)
 const Scroller = ref<BScrollConstructor| undefined>(undefined)
+
 const currentPageIndex = ref(1)
 const setPage = async () => {
-    return await new Promise<any[]> (resolve => {
-        setTimeout(()=>resolve(moke),3000)
+    return await new Promise<IResponse<any> | undefined> (async resolve => {
+        const {isFinished,data,response} = await useAxios<IResponse<any>>('/library',instance)
+        watch(isFinished,(newV)=>{
+            if(data.value && data.value.status === 'OK'){
+                resolve(data.value)
+            }
+        })
     })
 }
 
-
-
+const mokedata= moke
 const doClick = ()=>{
   console.log('123123');
 }
-const data=  await setPage()
-  onMounted(async ()=>{
+const data= await setPage()
+onMounted(async ()=>{
     if(libraryScroller.value&&data)
       Scroller.value= new BScroll(libraryScroller.value,{
           nestedScroll:{
@@ -68,17 +76,16 @@ const data=  await setPage()
             </div>
           </div>
         <div class='slide-banner-wrapper overflow-hidden slide-wrapper ' ref='libraryScroller'>
-          <div class="slide-banner-content h-quote md:h-lbbox w-full whitespace-nowrap cursor-pointer">
-            <GslidePage :app-list="data"></GslidePage>
-
+          <div class="slide-banner-content h-quote md:h-lbbox w-full  ">
+            <GslidePage :app-list="data?.data"></GslidePage>
           </div>
         </div>
             <div class="dots-wrapper absolute bottom-3 left-half -translate-x-half ">
               <span
-                class="dot rounded-full inline-block mx-2 w-2 h-2 border-full bg-blue-600 active:bg-red-300"
-                v-for="num in (Math.round(moke.length/9))"
+                class="dot rounded-full inline-block mx-2 w-2 h-2 border-full border border-slate-100 shadow"
+                v-for="num in (Math.ceil(data?.data.length/9))"
                 :key="num"
-                :class="currentPageIndex === num?'bg-red-300':'bg-blue-600' "></span>
+                :class="currentPageIndex === num?'bg-blue-300':'' "></span>
             </div>
       </div>
     </Container>

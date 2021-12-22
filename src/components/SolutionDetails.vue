@@ -16,7 +16,7 @@ const showTabs = computed(()=>{
     return function(tab:string){
         switch (tab) {
             case TABS.DEPENDENCIES:
-                return '依赖'
+                return '技术方案'
             case TABS.DESCRIPTION:
                 return '简介'
             case TABS.LINKS:
@@ -42,7 +42,7 @@ const tabActive = ref(TABS.DESCRIPTION)
   <div class='flex flex-col px-6 py-6'>
       <div class=' text-lg flex'>
           <div>{{data[0]}}</div>
-          <Tag :state='data[1].state'></Tag>
+          <Tag :state='data[1].state?data[1].state:0'></Tag>
       </div>
       <div class='state-descript py-2 text-xs text-slate-300'>
           {{stateDesrender(data[1].state)}}
@@ -56,6 +56,15 @@ const tabActive = ref(TABS.DESCRIPTION)
             {{showTabs(i)}}
           </div>
       </div>
-      <div class='tab-render'></div>
+      <div class='tab-render flex flex-col'>
+          <div v-if='tabActive === TABS.DESCRIPTION'>
+          <div class='intro text-sm py-2 opacity-80'>
+             - {{data[1].introduction}}
+          </div>          
+          </div>
+
+
+
+      </div>
   </div>
 </template>

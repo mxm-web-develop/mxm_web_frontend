@@ -7,14 +7,14 @@ import {ref} from 'vue'
 const pageData = ref({
     toolbarActive:undefined
 })
-const toolbarActive = (data:any)=> pageData.value.toolbarActive = data
+const toolbarActiveChange = (data:any)=> pageData.value.toolbarActive = data
 
 
 
 </script>
 <template>
     <div class="h-full w-full px-5 py-3 text-white">
-        <Toolbar @activeOnchange='toolbarActive'></Toolbar>
+        <Toolbar @activeOnchange='toolbarActiveChange'></Toolbar>
         <div class="flex flex-col md:flex-row h-full items-center justify-start md:justify-center  pt-20 md:pt-0">
      
             <div class="mxm_avator relative">
@@ -40,8 +40,14 @@ const toolbarActive = (data:any)=> pageData.value.toolbarActive = data
                 </div>
             </div>
             <div v-else>
-                <div class='md:px-5'>
-                    施工中....
+                <div class='md:px-5' v-if="pageData.toolbarActive === 'icon-image-text'">
+                    个人信息 施工中...
+                </div>
+                <div class='md:px-5' v-else-if="pageData.toolbarActive === 'icon-comment'">
+                    留言板 施工中...
+                </div>
+                <div class='md:px-5' v-else-if="pageData.toolbarActive === 'icon-music'">
+                    音乐播放器 施工中...
                 </div>
             </div>
             </div>
