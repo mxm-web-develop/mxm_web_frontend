@@ -4,7 +4,7 @@ import {onMounted, ref,defineAsyncComponent,getCurrentInstance,defineComponent, 
 import Page from './layouts/Page/index.vue';
 import LoadingPage from './components/Loading.vue'
 
-import { usescrollController } from './layouts/Scrollview/scrollController';
+
 import Serve from './views/Serve.vue';
 import Knowledge from './views/Knowledge.vue';
 import Footer from './layouts/Footer.vue';
@@ -12,20 +12,12 @@ import Footer from './layouts/Footer.vue';
 const Solution = defineAsyncComponent(()=>import(`./views/Solution.vue`))
 const NioUi = defineAsyncComponent(()=>import(`./views/NioUi.vue`))
 const Library = defineAsyncComponent(()=>import(`./views/Library.vue`))
-
-const {Scroller} = usescrollController()
-
 const show = ref(false)
 
 onMounted(()=>{
   setTimeout(()=>{
-    Scroller.value.enable()
+      show.value = true
   },50)
-  Scroller.value.on('enable', ()=> {
-    console.log('可以滑动了');
-    
-    show.value = true
-  })
 })
 
 </script>
