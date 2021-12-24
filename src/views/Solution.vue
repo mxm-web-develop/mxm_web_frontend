@@ -38,14 +38,16 @@ const {width} =useWindowSize()
 
 
 const setPage = async () => {
+    const {isFinished,data,error} = await useAxios<IResponse<DATATYPE>>('/solutions',instance)
     return await new Promise<IResponse<DATATYPE> | undefined> (async resolve => {
-        const {isFinished,data,response} = await useAxios<IResponse<DATATYPE>>('/solutions',instance)
         watch(isFinished,(newV)=>{
-            if(data.value && data.value.status === 'OK'){
+            if(newV === true&&data.value){
                 resolve(data.value)
             }
-   
         })
+    }).catch(err=>{
+        console.log(err);
+        
     })
 }
 const moblieView = computed(()=>{
@@ -73,6 +75,7 @@ const isItemActived = computed(()=>{
     }
 })
 const pageData = await setPage()
+
 // const solutionItemData = pageData!.data as DATATYPE
 
 
@@ -100,8 +103,8 @@ const pageData = await setPage()
                             <div class='sub-title md:w-10/12 text-sm text-slate-400'>MxM可以使用各种稳定工具，提供应用端各种解决方案，为了更好的用户体验和终端实现</div>
                         </div>
                     </div>
-                    <div class="list py-5">
-                        <SolutionItem v-for="(value,key) of pageData!.data" :key="key" :name="key" :solutionData='value' @itemOnClick='setactive' :isActived="isItemActived(key)"></SolutionItem>
+                    <div class="list py-5" v-if="pageData">
+                        <SolutionItem v-for="(value,key) of pageData.data" :key="key" :name="key" :solutionData='value' @itemOnClick='setactive' :isActived="isItemActived(key)"></SolutionItem>
                     </div>
                 </div>
                 <div class="hidden md:flex flex-col justify-center items-center md:w-6/12 px-5">

@@ -35,7 +35,7 @@ type Provider_Type = {
 }
 export const scrollController = ()=>{
     const Scroller = ref()
-    const doInitScroll =(target: any,config?:any)=>{
+    const doInitScroll = (target: any,config?:any)=>{
         if(target)
             Scroller.value = new BScroll(target, config?config:default_config)
             console.log('生成新的滚动控制器');

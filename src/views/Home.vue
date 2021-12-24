@@ -3,61 +3,73 @@
 import Mxm_icon from '@components/Mxm_icon.vue';
 import Container from '@/layouts/Container/index.vue';
 import Toolbar from '@/components/toolbar.vue';
+import {onMounted} from 'vue'
+import gsap,{ Power1,Back,Circ,Power4} from "gsap";
+import { usescrollController } from '../layouts/Scrollview/scrollController';
+const {Scroller} = usescrollController()
+
+gsap.registerPlugin()
+onMounted(()=>{
+    console.log(Scroller.value);
+    
+
+})
 import {ref} from 'vue'
 const pageData = ref({
     toolbarActive:undefined
 })
-const toolbarActiveChange = (data:any)=> pageData.value.toolbarActive = data
 
+const toolbarActiveChange = (data:any)=> pageData.value.toolbarActive = data
+const boxMoveIn = ()=>{
+    let tl;
+    tl = gsap.timeline()
+    /**先显示出来 */
+    tl.from('.animate-home',{duration:0.6 ,opacity:0})
+    tl.to('.left-x',{duration:0.6,rotate:90,ease:Circ.easeInOut})
+    tl.to('.right-x',{duration:0.6,rotate:-180,ease:Circ.easeInOut},'-=0.6')
+    tl.from('.left-m',{duration:0.3, right:0,top:0,fontSize:0})
+    tl.from('.right-m',{duration:0.3, right:0,bottom:0, fontSize:0},'-=0.3')
+  
+} 
 
 
 </script>
 <template>
-    <div class="h-full w-full px-5 py-3 text-white">
+    <div class="backgroun-set h-full w-full px-5 py-3 text-white">
         <Toolbar @activeOnchange='toolbarActiveChange'></Toolbar>
         <div class="flex flex-col md:flex-row h-full items-center justify-start md:justify-center  pt-20 md:pt-0">
-     
-            <div class="mxm_avator relative">
-                <img src="/img/ali.png" class='h-32 w-32 md:h-48 md:w-48 rounded-full'>
+            <transition appear @enter="boxMoveIn" :css="false">
+            <div class='animate-home relative'>
+                <div class='left-x w-72 h-1 bg-white rounded absolute top-half left-half -translate-x-half'></div>
+                <div class='right-x w-72 h-1 bg-white  rounded absolute top-half left-half -translate-x-half'></div>
+                <div class='flex item-center mb-10 mr-3'>
+                    <div class='left-m absolute text-3xl cursor-pointer w-20 '>M<span class='text-sm newText'></span> </div>
+                    <div class='right-m absolute text-3xl cursor-pointer '>M<span class='text-sm opacity-40'></span></div>
+                </div>
+        
             </div>
-            <div>
-           
-            <div class=" flex flex-col   items-center md:items-start">
-                <div class='text-lg md:text-3xl p-5 font-bold'>
-                <span class='text-3xl text-theme-red'>M</span>xM
-                    <span class='before:block before:absolute before:-inset-1 before:rounded-full  before:bg-white mx-2 px-2 py-1 relative inline-block '>
-                    <span class="relative text-theme-red  tracking-tight">Web</span>
-                    </span><span class='text-2xl text-theme-red'>D</span>evelop&&  <span class='text-2xl text-theme-red'>D</span>esign
-                </div>
-            </div>
-            <div class='default min-h-homeUnit md:min-h-0  px-6 w-10/12 md:w-96 md:5/12' v-if="pageData.toolbarActive === undefined">
-                <div class='text-white text-xs md:text-base  '>每日'金句':</div>
-                <div class='quote px-5 text-sm md:text-base italic py-2'>
-                    '优秀的设计源自经验的累积，完美的设计则来自想象力的点睛'
-                </div>
-                <div class=' text-xs italic float-right opacity-70'>
-                    - MxM
-                </div>
-            </div>
-            <div v-else>
-                <div class='md:px-5' v-if="pageData.toolbarActive === 'icon-image-text'">
-                    个人信息 施工中...
-                </div>
-                <div class='md:px-5' v-else-if="pageData.toolbarActive === 'icon-comment'">
-                    留言板 施工中...
-                </div>
-                <div class='md:px-5' v-else-if="pageData.toolbarActive === 'icon-music'">
-                    音乐播放器 施工中...
-                </div>
-            </div>
-            </div>
-            <div class=' transform rotate-180 absolute bottom-16'>
+            </transition>
+
+            <!-- <div class='transform rotate-180 absolute bottom-48'>
                 <div class="animate-bounce">
                     <Mxm_icon icon-name="icon-arrow" :size='42'></Mxm_icon>
                 </div>
-            </div>
-            
+            </div> -->
         </div>
  
     </div>
 </template>
+
+<style scoped>
+.zeroSize{
+  font-size:0px;
+}
+.left-m{
+ right: 20px;
+ top: -90px;
+}
+.right-m{
+ right: -90px;
+ bottom: -90px;
+}
+</style>

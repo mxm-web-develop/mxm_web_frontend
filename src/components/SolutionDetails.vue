@@ -58,12 +58,16 @@ const tabActive = ref(TABS.DESCRIPTION)
       </div>
       <div class='tab-render flex flex-col'>
           <div v-if='tabActive === TABS.DESCRIPTION'>
-          <div class='intro text-sm py-2 opacity-80'>
-             - {{data[1].introduction}}
-          </div>          
+            <div class='intro text-sm py-2 opacity-80'>
+                - {{data[1].introduction}}
+            </div>          
           </div>
-
-
+          <div v-if='tabActive === TABS.DEPENDENCIES'>
+               -
+          </div>
+          <div v-if='tabActive === TABS.LINKS'>
+           案例
+          </div>
 
       </div>
   </div>

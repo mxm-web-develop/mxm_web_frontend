@@ -16,7 +16,7 @@ const setPage = async () => {
     return await new Promise<IResponse<any> | undefined> (async resolve => {
         const {isFinished,data,response} = await useAxios<IResponse<any>>('/library',instance)
         watch(isFinished,(newV)=>{
-            if(data.value && data.value.status === 'OK'){
+             if(newV === true&&data.value){
                 resolve(data.value)
             }
         })

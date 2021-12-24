@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper slide-wrapper" ref="wrapper">
     <div class='z-10'>
-        <Page backgroundColor="#F9E001" id='cover' cover>
+        <Page backgroundColor="#000" id='cover' cover>
             <Home></Home>
         </Page>
     </div>
