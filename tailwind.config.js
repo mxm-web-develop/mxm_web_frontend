@@ -2,7 +2,11 @@ module.exports = {
   darkMode:'class',
   content: ["./src/**/*.{html,js,vue}"],
   theme: {
+
     extend: {
+      fontFamily: {
+        'animate': ['"Saira Stencil One"']
+      },
       colors: {
         'theme-red':'#F13842',
         'theme-yellow':'#F9E001'
@@ -15,8 +19,15 @@ module.exports = {
       },
       minHeight: {
         pageMin:'325px',
-        homeUnit:'280px'
+        homeUnit:'280px',
+        cover:'1024px'
       }, 
+      minWidth: {
+        padPage:'1024px'
+      },
+      maxWidth: {
+        HdPage:'1400px'
+      }
     },
 
   },

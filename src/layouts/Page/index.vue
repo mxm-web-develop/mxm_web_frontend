@@ -1,5 +1,5 @@
 <template>
-    <div class="page min-h-pageMin slide-page relative  w-full bg-white dark:bg-slate-800 " :class="cover?'h-screen':''" :style="{ backgroundColor:backgroundColor?backgroundColor:'' }" :id="id">
+    <div class="page border shadow-2xl min-h-pageMin slide-page relative  w-full bg-white dark:bg-slate-800 " :class="cover?'h-screen min-h-cover':''" :style="{ backgroundColor:backgroundColor?backgroundColor:'' }" :id="id">
         <slot></slot>
     </div>
 </template>

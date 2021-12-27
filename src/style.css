@@ -1,7 +1,18 @@
+/* @import url('https://fonts.font.im/css2?family=Saira+Stencil+One&display=swap'); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* @font-face {
+    font-family: 'Press Start 2P';
+    src: url(https://fonts.gstatic.font.im/s/pressstart2p/v9/e3t4euO8T-267oIAQAu6jDQyK3nYivNm4I81PZQ.woff2) format('woff2');
+} */
+/* @layer{
+    @font-face {
+        font-family:"Righteous";
+        src:  url('https://fonts.font.im/css2?family=Press+Start+2P&display=swap');
+    }
+} */
 
 /* .app-item{
     word-wrap:break-word !important;

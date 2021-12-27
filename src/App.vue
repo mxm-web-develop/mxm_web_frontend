@@ -3,6 +3,7 @@ import Scrollview from './layouts/Scrollview/index.vue';
 import {onMounted, ref,defineAsyncComponent,getCurrentInstance,defineComponent, Component} from 'vue'
 import Page from './layouts/Page/index.vue';
 import LoadingPage from './components/Loading.vue'
+import { usescrollController } from '@/layouts/Scrollview/scrollController';
 
 
 import Serve from './views/Serve.vue';
@@ -13,8 +14,9 @@ const Solution = defineAsyncComponent(()=>import(`./views/Solution.vue`))
 const NioUi = defineAsyncComponent(()=>import(`./views/NioUi.vue`))
 const Library = defineAsyncComponent(()=>import(`./views/Library.vue`))
 const show = ref(false)
-
+// const {Scroller} = usescrollController()
 onMounted(()=>{
+  // Scroller.value.disable()
   setTimeout(()=>{
       show.value = true
   },50)
