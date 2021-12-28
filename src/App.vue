@@ -16,11 +16,19 @@ const Library = defineAsyncComponent(()=>import(`./views/Library.vue`))
 const show = ref(false)
 // const {Scroller} = usescrollController()
 onMounted(()=>{
+  console.log('首页挂载');
+  
   // Scroller.value.disable()
   setTimeout(()=>{
       show.value = true
-  },50)
+  },500)
 })
+
+// const appViews = ()=>{
+//   const components = import.meta.globEager('./views/*.vue')
+
+// }
+
 
 </script>
 
@@ -28,7 +36,7 @@ onMounted(()=>{
   <div class="app" ref='app'>
          <!-- <Toolbar></Toolbar> -->
       <Scrollview >
-          <Page id="solution" v-if="show">
+          <Page id="Solutions" v-if="show">
             <Suspense>
               <template #default>
                 <Solution></Solution>
@@ -38,13 +46,13 @@ onMounted(()=>{
               </template>
             </Suspense>
           </Page>
-          <Page id="ui" v-if="show">
+          <Page id="MxM Next GUI" v-if="show">
               <NioUi></NioUi>
           </Page>
           <Page id="knowledge" v-if="show">
             <Knowledge></Knowledge>
           </Page>
-          <Page id="lib" v-if="show">
+          <Page id="Knowledge" v-if="show">
             <Suspense>
               <template #default>
                 <Library></Library>
@@ -54,7 +62,7 @@ onMounted(()=>{
               </template>
             </Suspense>
           </Page>
-          <Page id="cli" v-if="show">
+          <Page id="Servers" v-if="show">
             <Serve></Serve>
           </Page>
           <Footer></Footer>

@@ -8,7 +8,7 @@
           >
           <span class="opacity-50">上服务</span>
         </div>
-        <div class="sub-title md:w-10/12 text-sm text-slate-400">
+        <div  class="sub-title md:w-10/12 text-sm text-slate-400">
            MxM免费提供的相关线上服务
         </div>
       </div>
@@ -21,4 +21,5 @@
 
 <script lang="ts" setup>
 import Container from '@/layouts/Container/index.vue';
+
 </script>

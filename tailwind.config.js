@@ -5,7 +5,9 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        'animate': ['"Saira Stencil One"']
+        'animate': ['"Saira Stencil One"'],
+        'animate-2':['"Secular One"'],
+        'animate-3':['Catamaran']
       },
       colors: {
         'theme-red':'#F13842',
@@ -23,7 +25,7 @@ module.exports = {
         cover:'1024px'
       }, 
       minWidth: {
-        padPage:'1024px'
+        padPage:'750px'
       },
       maxWidth: {
         HdPage:'1400px'

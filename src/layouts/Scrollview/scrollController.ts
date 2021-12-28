@@ -34,16 +34,15 @@ type Provider_Type = {
     destoryScroll:()=>any
 }
 export const scrollController = ()=>{
-    const Scroller = ref()
+    const Scroller = ref<BScrollConstructor|undefined>()
     const doInitScroll = (target: any,config?:any)=>{
         if(target)
             Scroller.value = new BScroll(target, config?config:default_config)
-            console.log('生成新的滚动控制器');
+            // Scroller.value
     }
     const destoryScroll = ()=>{
         if(Scroller.value)
             Scroller.value.destroy();
-            console.log('滚动控制已经销毁');
     }
 
     provide(Symbol,{

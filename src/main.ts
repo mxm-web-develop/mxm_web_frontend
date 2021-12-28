@@ -1,33 +1,19 @@
-import { createApp,h } from 'vue'
+import { createApp,defineAsyncComponent,h, onBeforeMount,withDirectives } from 'vue'
 import App from './App.vue'
-import DeviceDetector from "device-detector-js";
+// import DeviceDetector from "device-detector-js";
 import { scrollController } from './layouts/Scrollview/scrollController'
 import './style.css'
-
+import * as directives from './directives'
 
 const app = createApp(
-
     {
-        setup(){
-            scrollController()
-            const deviceDeviceDetector = new DeviceDetector()
-            // const deviceInfo = deviceDeviceDetector.parse(navigator.userAgent)
-            // const currentHost = location.host
-            // const protocol = location.protocol
-            // if(deviceInfo.device?.type === 'smartphone'&& !currentHost.match(/^m\./)){
-            //     location.replace(protocol+'//m.'+currentHost)
-            // }
-            // if(deviceInfo.device?.type === 'desktop'&& currentHost.match(/^m\./)){
-            //     console.log(protocol+currentHost.replace(/^m\./,''));
-                
-            //     location.replace(protocol+"//"+currentHost.replace(/^m\./,''))
-            // }
-            
-            
+         setup(){
+             scrollController()
         },
         render:()=>h(App) 
     }
 )
-
-
+Object.entries(directives).forEach((v,k) =>{
+    app.directive(v[0],v[1])
+});
 app.mount('#app')
