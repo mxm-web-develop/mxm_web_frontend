@@ -8,10 +8,16 @@ import importToCDN from 'vite-plugin-cdn-import'
 export default defineConfig({
   plugins: [vue(),importToCDN({
     modules:[
-     { name:'dayjs',
+     { 
+        name:'dayjs',
         var:'dayjs',
         path:'https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js'
-      }
+      },
+      // {
+      //   name:'vueuse',
+      //   var:'@vueuse/core',
+      //   path:'https://cdn.jsdelivr.net/npm/@vueuse/core@7.4.1/index.iife.min.js'
+      // }
     ]
   })],
   build:{

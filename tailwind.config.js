@@ -17,6 +17,7 @@ module.exports = {
         pcBody:'1200px',
         quote:'295px',
         lbbox:'650px',
+        designbox:'780px',
         half:'50%'
       },
       minHeight: {
