@@ -6,9 +6,9 @@ import Toolbar from '@/components/toolbar.vue';
 import {computed, onMounted, reactive} from 'vue'
 import gsap,{ Power1,Back,Circ,Power4} from "gsap";
 import { usescrollController } from '../layouts/Scrollview/scrollController';
-import { useWindowSize,useSessionStorage } from '@vueuse/core'
+import { useWindowSize,useSessionStorage,} from '@vueuse/core'
 import {ref,defineAsyncComponent,watch} from 'vue'
-
+import { useGlobalState } from '@/globalStore';
 
 const About = defineAsyncComponent(()=>import(`./DesignComponents/Aboutme.vue`))
 const Contact = defineAsyncComponent(()=>import(`./DesignComponents/Contact.vue`))
@@ -81,19 +81,25 @@ watch(pageData.value,(newV)=>{
     
 })
 const {width}= useWindowSize()
-const store = useSessionStorage('MXM_WEB',{
-    animated:false
-})
+// const store = useSessionStorage('MXM_WEB',{
+//     animated:false
+// })
+const appState =useGlobalState()
+console.log(appState.value);
+
+
+
 
 const toolbarActiveChange = (data:any)=> pageData.value.toolbarActive = data
 const boxMoveIn = async()=>{
+
     if(width.value>765){
-        if(!store.value.animated){
+        if(!appState.value.animated){
             loadingProgress()
             boxLoading()
             showTools()
             tl.then(()=>{
-                store.value.animated = true
+                appState.value.animated = true
                 emit('onLoaderFinish',true)
             }) 
         }else{
@@ -106,7 +112,6 @@ const boxMoveIn = async()=>{
     }
 } 
 const scrollBtn = ()=>{
-    
     pageData.value.tabsActived = TABS_ACTIVE.DEVELOP
     navItemClicked({text:'Solutions',value:0},0)
 }
