@@ -8,8 +8,6 @@ import gsap,{ Power1,Back,Circ,Power4} from "gsap";
 import { usescrollController } from '../layouts/Scrollview/scrollController';
 import { useWindowSize,useSessionStorage,} from '@vueuse/core'
 import {ref,defineAsyncComponent,watch} from 'vue'
-// import { useGlobalState } from '@/globalStore';
-
 const About = defineAsyncComponent(()=>import(`./DesignComponents/Aboutme.vue`))
 const Contact = defineAsyncComponent(()=>import(`./DesignComponents/Contact.vue`))
 const MxmStyle = defineAsyncComponent(()=>import(`./DesignComponents/MxmSsheet.vue`))
@@ -19,7 +17,7 @@ gsap.registerPlugin()
 const emit = defineEmits(['onLoaderFinish'])
 const {Scroller} = usescrollController()
 enum TABS_ACTIVE{
-        DEVELOP,
+    DEVELOP,
     DESIGN
 
 }
@@ -74,6 +72,7 @@ const pageData = ref({
 })
 watch(pageData.value,(newV)=>{
     if(newV.designNav !== DESIGN_NAV.HOME){
+        Scroller.value.scrollTo(0,0,800)
         Scroller.value.disable()
     }else{
          Scroller.value.enable()
@@ -81,18 +80,12 @@ watch(pageData.value,(newV)=>{
     
 })
 const {width}= useWindowSize()
-const store = useSessionStorage('MXM_WEB',{
+const store  = useSessionStorage('MXM_WEB',{
     animated:false
 })
 
-
-
-
-
-
 const toolbarActiveChange = (data:any)=> pageData.value.toolbarActive = data
 const boxMoveIn = async()=>{
-
     if(width.value>765){
         if(!store.value.animated){
             loadingProgress()
@@ -134,7 +127,7 @@ const boxLoading=()=>{
     tl.to('.right-x',{duration:0.6,rotate:-45,ease:Circ.easeInOut},'-=0.6')
     tl.from('.left-m',{duration:0.2, opacity:0,ease:Circ.easeInOut})
     tl.from('.right-m',{duration:0.2, opacity:0,ease:Circ.easeInOut})
-    tl.from('.animate-home ',{duration:0.6,x:0})
+    tl.to('.animate-home',{duration:0.6,x:-120,ease:Circ.easeInOut})
     tl.from('.nav',{duration:0.6,opacity:0,ease:Circ.easeInOut},'-=0.6')
 }
 
@@ -165,20 +158,20 @@ const emphaTextSet = [
 ]
 </script>
 <template>
-    <div class="home backgroun-set h-full w-full px-5 py-3 ">
+    <div class="home backgroun-set h-full w-full ">
         <!-- <div class='toolbar'>
            <Toolbar @activeOnchange='toolbarActiveChange'></Toolbar>
         </div> -->
 
         <div class="flex flex-col md:flex-row h-full items-center justify-start md:justify-center  pt-20 md:pt-0">
             <transition appear @enter="boxMoveIn" :css="false">
-                <div class='animate-home  -translate-x-36  hidden md:flex relative' v-if='pageData.designNav===DESIGN_NAV.HOME'>
-                    <div>
-                        <div class='left-x animate-line bg-black rounded absolute top-half left-half -translate-x-half'></div>
-                        <div class='right-x animate-line bg-black  rounded absolute top-half left-half -translate-x-half'></div>
+                <div class='animate-home mb-28 hidden md:flex relative' v-if='pageData.designNav===DESIGN_NAV.HOME'>
+                    <div class='left-box relative'>
+                        <div class='left-x animate-line bg-black rounded  centered-child '></div>
+                        <div class='right-x animate-line bg-black  rounded  centered-child '></div>
                         <div class='progress text-center'>90%</div>
                         <div class='flex item-center mb-10 mr-3'>
-                            <div class='left-m absolute animate-font cursor-pointer w-20 font-animate '>M<span class='text-sm newText'></span> </div>
+                            <div class='left-m absolute animate-font  cursor-pointer w-20 font-animate '>M<span class='text-sm newText'></span> </div>
                             <div class='right-m absolute animate-font cursor-pointer font-animate '>M<span class='text-sm opacity-40'></span></div>
                         </div>
                     </div>
@@ -265,4 +258,10 @@ const emphaTextSet = [
 /* .myfont{
    font-family: 'Press Start 2P', cursive;
 } */
+.centered-child{
+    position:  absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 </style>

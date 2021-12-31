@@ -21,7 +21,7 @@ onMounted(()=>{
   // Scroller.value.disable()
   setTimeout(()=>{
       show.value = true
-  },500)
+  },5000)
 })
 
 // const appViews = ()=>{

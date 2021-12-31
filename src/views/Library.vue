@@ -27,6 +27,7 @@ const mokedata= moke
 const doClick = ()=>{
   console.log('123123');
 }
+
 const data= await setPage()
 onMounted(async ()=>{
     if(libraryScroller.value&&data)

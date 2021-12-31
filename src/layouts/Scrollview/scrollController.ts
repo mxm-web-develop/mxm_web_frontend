@@ -22,7 +22,7 @@ const default_config = {
     click:true,
     bounce: {
         top: false,
-        bottom: true,
+        bottom: false,
         left: false,
         right: false
       }

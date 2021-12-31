@@ -2,12 +2,11 @@ module.exports = {
   darkMode:'class',
   content: ["./src/**/*.{html,js,vue}"],
   theme: {
-
     extend: {
       fontFamily: {
         'animate': ['"Saira Stencil One"'],
         'animate-2':['"Secular One"'],
-        'animate-3':['Catamaran']
+        'animate-3':['DM Sans']
       },
       colors: {
         'theme-red':'#F13842',
@@ -23,7 +22,7 @@ module.exports = {
       minHeight: {
         pageMin:'325px',
         homeUnit:'280px',
-        cover:'1024px'
+        cover:'795px'
       }, 
       minWidth: {
         padPage:'750px'
