@@ -178,7 +178,6 @@ const emphaTextSet = [
                     <div class='absolute nav'>
                         <div class='flex items-center'>
                             <div class='font-animate animate-font  text-theme-red'>D</div>
-               
                             <div class=' border-r ml-2 pr-2 cursor-pointer translate-y-5 font-animate-2 text-lg'
                             :class="pageData.tabsActived === TABS_ACTIVE.DEVELOP?'':'opacity-10'"
                             @click="()=>pageData.tabsActived = TABS_ACTIVE.DEVELOP"
@@ -202,7 +201,7 @@ const emphaTextSet = [
                 <About v-if="pageData.designNav === DESIGN_NAV.ABOUTME"></About>
                 <Contact v-if="pageData.designNav === DESIGN_NAV.CONTACT"></Contact>
                 <MxmStyle v-if="pageData.designNav === DESIGN_NAV.MXMSTYLE"></MxmStyle>
-                <div class='scroll-icon transform flex flex-col item-center justify-center absolute bottom-48 cursor-pointer' >
+                <div class='scroll-icon transform flex flex-col item-center justify-center absolute bottom-24 cursor-pointer' >
                     <div v-if="pageData.designNav === DESIGN_NAV.HOME" class='text-center flex flex-col items-center justify-center'>
                         <div class="animate-bounce mx-auto">
                             <Mxm_icon icon-name="icon-arrow" color='#000000' :size='42' @click="scrollBtn"></Mxm_icon>
@@ -252,9 +251,9 @@ const emphaTextSet = [
     right: -13px;
 }
 
-.scroll-icon{
-    bottom:85px;
-}
+/* .scroll-icon{
+    bottom:35px;
+} */
 /* .myfont{
    font-family: 'Press Start 2P', cursive;
 } */
