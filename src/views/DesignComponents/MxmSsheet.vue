@@ -4,6 +4,8 @@ import { onMounted, ref } from "vue";
 import { useScriptTag } from '@vueuse/core'
 import { useAxios } from '@vueuse/integrations/useAxios'
 import Fonts from "./StyleSheetComp/Fonts.vue";
+import webfontloader from "webfontloader";
+import Colors from "./StyleSheetComp/Colors.vue";
 const emit = defineEmits(['backReady'])
 
 
@@ -18,13 +20,16 @@ const {scriptTag ,load} = useScriptTag(
 
 const designPageEnter =async ()=>{
     gsap.from('.h-designbox',{ duration:0.8,opacity:0,y:60})
-
-    
-    
 }
 
  onMounted(async()=>{
-  
+      webfontloader.load({
+        google:{
+            families:['Flow Block'],
+            api:'https://fonts.font.im/css2'
+        },
+
+    })
     console.log(scriptTag.value,'sdflijsdf');  
 })
 const designPageleavel = ()=>{
@@ -47,12 +52,12 @@ const modules = [
 
 <template>
     <transition appear @enter="designPageEnter" @before-leave="designPageleavel" :css='false'>
-        <div class=" h-designbox reactive w-full overflow-hidden py-5">
-            <div class="px-20 font-animate text-lg">
+        <div class=" max-w-screen-2xl  h-designbox reactive w-full overflow-hidden py-5">
+            <div class="px-12 font-animate text-lg">
                 <span class=" text-3xl text-theme-red">MxM</span> Style Sheet
             </div>
-           <div class="flex w-full px-20 justify-between">
-               <div class="mt-8 w-3/12 left flex flex-col border-r">
+           <div class="flex w-full px-12 justify-between">
+               <div class="mt-8 w-56 flex-grow-0  left flex flex-col border-r">
                    <div v-for="i in modules" :key='i.text' class='py-3 font-animate-2 cursor-pointer'>
                     <span>-</span>  {{i.text}}
                    </div>
@@ -60,8 +65,9 @@ const modules = [
                     <span>-</span> Export
                    </div>
                </div>
-               <div class=" w-9/12 px-5 justify-between right">
-                   <fonts></fonts>
+               <div class=" flex-grow justify-between right">
+                   <colors></colors>
+                   <!-- <fonts></fonts> -->
                </div>
            </div> 
         </div>

@@ -132,7 +132,7 @@ const boxLoading=()=>{
 }
 
 const showTools=()=>{
-    // tl.from('.toolbar',{duration:0.3,opacity:0,ease:Circ.easeInOut})
+
     tl.from('.scroll-icon',{duration:0.3,opacity:0,ease:Circ.easeInOut},'-=0.3')
 }
 const showActivedRoute = computed(()=>{

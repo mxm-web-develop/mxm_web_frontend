@@ -11,7 +11,6 @@ export default {
     created(el:HTMLElement, binding:DirectiveBinding){
     let innerStr = el.innerText
     let data:item[] = binding.value
-    console.log(el.innerText );
     if(!data) return
     data.forEach((i:item)=>{
         innerStr = innerStr.replaceAll(i.keyword,i.link?

@@ -1,13 +1,16 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { Google_Fonts_List } from '../Style_Sheet';
-
+import webfontloader from 'webfontloader'
 const fontPicker = ref<HTMLElement | null>(null)
 const fontsOptions = ref(Google_Fonts_List)
-const selectRef = ref('')
+const fontPick = ref('')
+const sizeUnits = ref()
+const fontWeight = ref('')
 const fontSize = ref<number>(36);
 const handleChange=(val:any,k:any)=>{
     console.log(val,k); 
+
 }
 const handlefocus=(val:any)=>{
     console.log(val);
@@ -17,46 +20,68 @@ const handlefocus=(val:any)=>{
 </script>
 
 <template>
-         <div class='Fonts flex  flex-row-reverse'>
-              
-                       <div class='flex flex-col  justify-start items-end mt-8'>
-                           <div class='flex flex-col'>
-                               <div class='label'>
-                                   font-family
-                               </div>
-                                <a-select
-                                    placeholder="select font-family"
-                                    ref="select"
-                                    class="w-32 rounded-full"
-                                    v-model:value="selectRef"
-                                    @focus="handlefocus"
-                                    @change="handleChange"
-                                    >
-                                    <a-select-option v-for="(o,index) in fontsOptions" :key="index" :value="o.value">
-                                        {{o.value}} {{o.lang ==="en"? "- english": "- chinese"}}
-                                    </a-select-option>
-                                </a-select>
-                           </div>
-                           <div class='flex flex-col'>
-                               <div class='label'>
-                                   font-size
-                               </div>
-                             <a-input-number
-                                v-model:value="fontSize"
-                                  @change="handleChange"
-                             />
-                            </div>
+         <div class='Fonts h-full flex w-full relative  justify-start'>
+                    <div class='flex-grow  h-full '>
+                        <div class='font-animate-2 text-center opacity-50  h-14'>Select Your Theme Fonts</div>
+                        <div class=' h-4/5 flex justify-center item-center'>
+                        <div 
+                        :style='{fontSize:fontSize+"px"}'
+                        class="font-template text-center  flex  items-center justify-center shadow-sm border border-slate-100 w-10/12 py-12 rounded-t-lg mx-auto mt-8" ref='fontPicker'>
+                            MxM Style Sheet, Fonts picker
                         </div>
-                   
-               
-                <div>
-                   <div class='font-animate-2'>Select Your Theme Fonts</div>
-                   <div 
-                   :style='{fontSize:fontSize+"px"}'
-                   class="font-template text-center py-8 shadow-sm border border-slate-100 w-10/12 rounded-t-lg mx-auto mt-8" ref='fontPicker'>
-                       MxM Style Sheet, Fonts picker
-                   </div>
-                </div>
+                        </div>
+                    </div>
+                    <div class='flex flex-col    justify-start items-start mt-8'>
+                            <div class='flex flex-col py-1'>
+                                <div class='label'>
+                                    font-family
+                                </div>
+                                <el-select v-model="fontPick"  placeholder="Select">
+                                    <el-option
+                                    v-for="item in fontsOptions"
+                                    :key="item.value"
+                                    :label="item.value"
+                                    :value="item.value"
+                                    >
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class='flex flex-col py-1'>
+                                <div class='label'>
+                                    size-unit
+                                </div>
+                                <el-select v-model="sizeUnits" class  placeholder="Select">
+                                    <el-option
+                                    v-for="item in [{value:'rem'},{value:'px'}]"
+                                    :key="item.value"
+                                    :label="item.value"
+                                    :value="item.value"
+                                    >
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class='flex flex-col py-1'>
+                                <div class='label'>
+                                    font-weight
+                                </div>
+                                <el-select v-model="fontWeight" class  placeholder="Select">
+                                    <el-option
+                                    v-for="item in [{value:'thin'},{value:'normal'},{value:'bold'},{value:'black'}]"
+                                    :key="item.value"
+                                    :label="item.value"
+                                    :value="item.value"
+                                    >
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class='flex flex-col py-1'>
+                                <div class='label'>
+                                    font-size
+                                </div>
+                                   <el-input-number v-model="fontSize" :min="10" :max="60" @change="handleChange" />
+                            </div>
+                    </div>
+        
                  </div>
 </template>
 
