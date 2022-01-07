@@ -23,14 +23,13 @@ const designPageEnter =async ()=>{
 }
 
  onMounted(async()=>{
-      webfontloader.load({
-        google:{
-            families:['Flow Block'],
-            api:'https://fonts.font.im/css2'
-        },
+    //   webfontloader.load({
+    //     google:{
+    //         families:['Flow Block'],
+    //         api:'https://fonts.font.im/css2'
+    //     },
 
-    })
-    console.log(scriptTag.value,'sdflijsdf');  
+    // })
 })
 const designPageleavel = ()=>{
     gsap.to('.h-designbox',{ duration:0.4,opacity:0})
@@ -66,8 +65,8 @@ const modules = [
                    </div>
                </div>
                <div class=" flex-grow justify-between right">
-                   <colors></colors>
-                   <!-- <fonts></fonts> -->
+                   <!-- <colors></colors> -->
+                   <fonts></fonts>
                </div>
            </div> 
         </div>
