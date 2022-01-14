@@ -19,6 +19,7 @@
     "ts-debounce": "^4.0.0",
     "vue": "^3.2.25",
     "vue-color-kit": "^1.0.5",
+    "vue-router": "4",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

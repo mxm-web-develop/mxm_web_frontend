@@ -1,7 +1,15 @@
+<script  lang="ts">
+  export default {
+    name: 'Fonts',
+    inheritAttrs: false,
+    customOptions: {}
+  }
+</script>
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { Google_Fonts_List } from '../Style_Sheet';
 import Mxm_icon from '@/components/mxm_icon.vue';
+import {useStyleSheet} from '../useStyleSheet'
 import webfontloader from 'webfontloader'
 const fontPicker = ref<HTMLElement | null>(null)
 const fontsOptions = ref(Google_Fonts_List)
@@ -12,6 +20,9 @@ const selectedFont = ref()
 const fontLoading = ref(false)
 const savedFont = ref<any[]>([])
 const fontSize = ref<number>(36);
+const {data} = useStyleSheet()
+console.log('dkfjdkfjkldf',data);
+
 const handleChange=(val:any,type:any)=>{
     switch (type) {
         case 'fontPick':

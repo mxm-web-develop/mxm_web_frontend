@@ -20,4 +20,5 @@ Object.entries(directives).forEach((v,k) =>{
     
     app.directive(v[0],v[1] as any)
 });
+
 app.mount('#app')

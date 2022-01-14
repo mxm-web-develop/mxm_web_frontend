@@ -1,3 +1,10 @@
+<script  lang="ts">
+  export default {
+    name: 'Colors',
+    inheritAttrs: false,
+    customOptions: {}
+  }
+</script>
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue';
 import { ColorPicker } from 'vue-color-kit'
