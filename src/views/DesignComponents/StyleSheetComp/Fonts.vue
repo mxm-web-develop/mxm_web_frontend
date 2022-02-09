@@ -97,7 +97,7 @@ const rm=(item:any,indexId:number)=>{
 </script>
 
 <template>
-         <div class='Fonts h-full flex w-full relative  justify-start'>
+        <div class='Fonts h-full flex w-full relative  justify-start'>
                     <div class='flex-grow  h-full '>
                         <div class='font-animate-2 text-center opacity-50  h-14'>Select Your Theme Fonts</div>
                         <div class=' h-4/5 flex justify-center item-center'>
@@ -191,7 +191,7 @@ const rm=(item:any,indexId:number)=>{
                             </div>
                     </div>
         
-                 </div>
+        </div>
 </template>
 
 <style scoped>

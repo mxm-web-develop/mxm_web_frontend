@@ -11,10 +11,10 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   plugins: [
     vue(),
-    importToCDN({
-      modules:[autoComplete('vue'),autoComplete('@vueuse/core')
-    ]
-    }),
+    // importToCDN({
+    //   modules:[autoComplete('vue'),autoComplete('@vueuse/core')
+    // ]
+    // }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
